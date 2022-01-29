@@ -1,0 +1,88 @@
+{
+    "products": [
+        {
+          "id": 1,
+          "image": "circa-tShirt.jpg",
+          "title": "Remera Circa",
+          "price": 1600,
+          "description": "Remera de algodón Circa"
+        },
+        {
+          "id": 2,
+          "image": "dc-tShirt.jpg",
+          "title": "Remera DC",
+          "price": 1600,
+          "description": "Remera de algodón DC"
+        },
+        {
+          "id": 3,
+          "image": "element-tShirt.jfif",
+          "title": "Remera Element",
+          "price": 1600,
+          "description": "Remera de algodón Element"
+        },
+        {
+          "id": 4,
+          "image": "etnies-tShirt.jpg",
+          "title": "Remera Etnies",
+          "price": 1600,
+          "description": "Remera de algodón Etnies"
+        },
+        {
+          "id": 5,
+          "image": "gucci-tShirt.jfif",
+          "title": "Remera Gucci",
+          "price": 1600,
+          "description": "Remera de algodón Gucci"
+        },
+        {
+          "id": 6,
+          "image": "jordan-tShirt.jpg",
+          "title": "Remera Jordan",
+          "price": 1600,
+          "description": "Remera de algodón Jordan"
+        },
+        {
+          "id": 7,
+          "image": "nasa-tShirt.jpg",
+          "title": "Remera Nasa",
+          "price": 1600,
+          "description": "Remera de algodón Nasa"
+        },
+        {
+          "id": 8,
+          "image": "nike-tShirt.jpg",
+          "title": "Remera Nike",
+          "price": 1600,
+          "description": "Remera de algodón Nike"
+        },
+        {
+          "id": 9,
+          "image": "quiksilver-tShirt.jpg",
+          "title": "Remera Quicksilver",
+          "price": 1600,
+          "description": "Remera de algodón Quicksilver"
+        },
+        {
+          "id": 10,
+          "image": "reef-tShirt.jfif",
+          "title": "Remera Reef",
+          "price": 1600,
+          "description": "Remera de algodón Reef"
+        },
+        {
+          "id": 11,
+          "image": "spiral-tShirt.jpg",
+          "title": "Remera Spiral",
+          "price": 1600,
+          "description": "Remera de algodón Spiral"
+        },
+        {
+          "id": 12,
+          "image": "vans-tShirt.jfif",
+          "title": "Remera Vans",
+          "price": 1600,
+          "description": "Remera de algodón Vans"
+        }
+    ]
+}
