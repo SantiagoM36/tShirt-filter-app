@@ -1,4 +1,4 @@
-import { INIT_PRODUCTS, FILTER_ADD_PRODUCT, FILTER_SEARCH_PRODUCT } from '../actions/types'; 
+import { INIT_PRODUCTS, FILTER_ONE_PRODUCT, FILTER_SEARCH_PRODUCT } from '../actions/types'; 
 
 //STATE
 export const initialState = {
@@ -12,17 +12,27 @@ export const filterReducer = (state = initialState, action) => {
         
         return {...state, products: action.payload.products}
 
-        case FILTER_ADD_PRODUCT:
+        case FILTER_ONE_PRODUCT:
             
-            console.log('Action add: ', action)
-        return state;
+            let result;
+
+            let productsState = [...state.products];
+            let productSearch = action.payload;
+            if(productSearch !== '') {
+                result = productsState.filter(product => (product.title.toLowerCase().indexOf(productSearch.toLowerCase()) !== -1))
+            } else {
+                result = productsState
+            }
+
+            //console.log('Result: ', {products: result})
+
+        return {...state, products: result};
 
         case FILTER_SEARCH_PRODUCT:
 
             const {products} = state;
             if(!products) return [];
             
-            let result;
 
             let product = '';
             if (action.payload.length >= 2) {
@@ -30,16 +40,8 @@ export const filterReducer = (state = initialState, action) => {
             } else {
                 product = ''
             }
-
-            let productsState = [...products];
-            let productSearch = product;
-            if(productSearch !== '') {
-                result = productsState.filter(product => (product.title.toLowerCase().indexOf(productSearch.toLowerCase()) !== -1))
-            } else {
-                result = productsState
-            }
         
-        return {...state, products: result}
+        return {...state, searchProduct: product }
     
         default:
             return state

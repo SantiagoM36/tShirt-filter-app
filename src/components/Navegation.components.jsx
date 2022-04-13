@@ -1,13 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { FILTER_SEARCH_PRODUCT } from '../actions/types';
+import { FILTER_ONE_PRODUCT, FILTER_SEARCH_PRODUCT } from '../actions/types';
 
 const Navegation = props => {
+
+    const { searchProduct } = props.products;
 
     const onHandleChange = e => {
         props.filterProduct(e.target.value)
     }
+
+    const onHandleClick = e => {
+        e.preventDefault();
+        props.oneProduct(searchProduct)
+    }
+
+    //console.log('Props: ', props)
 
     return (
         <>
@@ -35,7 +44,7 @@ const Navegation = props => {
                         name="search"
                         onChange={onHandleChange}
                     />
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={onHandleClick}>
                         Search
                     </button>
                 </form>
@@ -44,10 +53,17 @@ const Navegation = props => {
     );
 }
 
+const mapStateToProps = state => {
+    return {
+        products: state.items
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return ({
-        filterProduct: item => dispatch({type: FILTER_SEARCH_PRODUCT, payload: item})
+        filterProduct: item => dispatch({type: FILTER_SEARCH_PRODUCT, payload: item}),
+        oneProduct: item => dispatch({type: FILTER_ONE_PRODUCT, payload: item})
     })
 }
 
-export default connect(null, mapDispatchToProps)(Navegation);
+export default connect(mapStateToProps, mapDispatchToProps)(Navegation);

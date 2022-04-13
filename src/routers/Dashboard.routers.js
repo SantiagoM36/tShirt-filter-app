@@ -8,7 +8,7 @@ import AboutUs from '../pages/AboutUs.pages';
 import Contact from '../pages/Contact.pages';
 import Index from '../pages/Index.pages';
 import NotFound from '../pages/NotFound.pages';
-import infoProducts from '../data/merchants.json';
+//import infoProducts from '../data/merchants.json';
 
 import store from '../store';
 import { getProducts } from '../services/api.services';
@@ -32,7 +32,7 @@ class Dashboard extends React.Component {
         const { products } = this.props.products;
         if (!products) return [];
         
-        console.log('Props: ', this.props)
+        //console.log('Props: ', this.props)
 
         return (
             <BrowserRouter>
@@ -44,6 +44,7 @@ class Dashboard extends React.Component {
                     <Route exact path='/product/:productId' render={props => {
                         let idProduct = props.location.pathname.replace('/product/', '');
                         if(!products[idProduct - 1]) return;
+
                         return (
                             <SingleProduct products={products[idProduct - 1]} />
                         )
