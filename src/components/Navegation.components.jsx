@@ -1,10 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { FILTER_SEARCH_PRODUCT } from '../actions/types';
 
 const Navegation = props => {
 
     const onHandleChange = e => {
-        props.searchProduct(e.target.value)
+        props.filterProduct(e.target.value)
     }
 
     return (
@@ -24,7 +26,7 @@ const Navegation = props => {
                         <NavLink className="nav-link" to="/contact">Contact</NavLink>
                     </li>
                 </ul>
-                <form className="form-inline offset-5">
+                <form className="form-inline offset-lg-4">
                     <input
                         className="form-control mr-sm-2"
                         type="search"
@@ -42,4 +44,10 @@ const Navegation = props => {
     );
 }
 
-export default Navegation;
+const mapDispatchToProps = dispatch => {
+    return ({
+        filterProduct: item => dispatch({type: FILTER_SEARCH_PRODUCT, payload: item})
+    })
+}
+
+export default connect(null, mapDispatchToProps)(Navegation);

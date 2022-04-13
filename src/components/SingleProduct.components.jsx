@@ -1,6 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-//import {Outlet} from 'react-router-dom';
 
 const SingleProduct = props => {
     const { image, title, price, description } = props.products;
@@ -25,4 +25,10 @@ const SingleProduct = props => {
     );
 }
 
-export default SingleProduct;
+const mapStateToProps = state => {
+    return {
+        state
+    }
+}
+
+export default connect(mapStateToProps)(SingleProduct);

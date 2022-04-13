@@ -10,49 +10,40 @@ import Index from '../pages/Index.pages';
 import NotFound from '../pages/NotFound.pages';
 import infoProducts from '../data/merchants.json';
 
-class Dashboard extends React.Component {
-    state = {
-        products: [],
-        searchProduct: ''
-    }
+import store from '../store';
+import { getProducts } from '../services/api.services';
+import { initProducts } from '../actions/filter.actions';
+import { STORAGE_PRODUCTS } from '../utils/constants';
+import { connect } from 'react-redux';
 
-    setProducts = products => this.setState({ products });
-    setSearchProduct = searchProduct => {
-        if (searchProduct.length >= 2) {
-            this.setState({ searchProduct })
-        } else {
-            this.setState({ searchProduct: '' })
-        }
-    };
+class Dashboard extends React.Component {
 
     componentDidMount() {
-        this.setProducts(infoProducts)
+        getProducts().then(products => {
+            store.dispatch(initProducts(products))
+        })
+    }
+
+    getProductsFromStorage = () => {
+        //const products = localStorage.getItem(STORAGE_PRODUCTS)
     }
 
     render() {
-        const { products } = this.state.products;
+        const { products } = this.props.products;
         if (!products) return [];
         
-        let productsState = [...products]
-        let productSearch = this.state.searchProduct;
-        let result;
+        console.log('Props: ', this.props)
 
-        
-
-        if (productSearch !== '') {
-            result = productsState.filter(product => (product.title.toLowerCase().indexOf(productSearch.toLowerCase()) !== -1))
-        } else {
-            result = productsState;
-        }
         return (
             <BrowserRouter>
-                <Header title='Store App' searchProduct={this.setSearchProduct} />
+                <Header title='Store App' />
                 <Switch>
                     <Route exact path='/'>
-                        <Index products={result} />
+                        <Index />
                     </Route>
                     <Route exact path='/product/:productId' render={props => {
                         let idProduct = props.location.pathname.replace('/product/', '');
+                        if(!products[idProduct - 1]) return;
                         return (
                             <SingleProduct products={products[idProduct - 1]} />
                         )
@@ -68,4 +59,10 @@ class Dashboard extends React.Component {
     }
 }
 
-export default Dashboard;
+const mapStateToProps = state => {
+    return {
+        products: state.items
+    }
+}
+
+export default connect(mapStateToProps)(Dashboard);
