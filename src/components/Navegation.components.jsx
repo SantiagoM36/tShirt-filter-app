@@ -11,12 +11,12 @@ const Navegation = props => {
         props.filterProduct(e.target.value)
     }
 
-    const onHandleClick = e => {
+    /*const onHandleClick = e => {
         e.preventDefault();
         props.oneProduct(searchProduct)
     }
 
-    //console.log('Props: ', props)
+    console.log('Props: ', props)*/
 
     return (
         <>
@@ -44,7 +44,9 @@ const Navegation = props => {
                         name="search"
                         onChange={onHandleChange}
                     />
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={onHandleClick}>
+                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit" 
+                        //onClick={onHandleClick}
+                    >
                         Search
                     </button>
                 </form>

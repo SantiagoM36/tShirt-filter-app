@@ -3,14 +3,19 @@ import { connect } from 'react-redux';
 import Card from './Card.components';
 
 class Gallery extends React.Component {
-    state = {}
     render() {
-        const { products } = this.props.products;
+        const { products, filter } = this.props.products;
+        
         return (
             <section className='row'>
-                {products.map(product =>                    
-                    <Card key={product.id} product={product} />
-                )}
+                { !filter.length
+                    ? products.map(product =>                    
+                        <Card key={product.id} product={product} />
+                    )
+                    : filter.map(product =>                    
+                        <Card key={product.id} product={product} />
+                    )
+                }
             </section>
         );
     }

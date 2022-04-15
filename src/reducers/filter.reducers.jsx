@@ -3,7 +3,7 @@ import { INIT_PRODUCTS, FILTER_ONE_PRODUCT, FILTER_SEARCH_PRODUCT } from '../act
 //STATE
 export const initialState = {
     products: [],
-    searchProduct: ''
+    filter: []
 }
 
 export const filterReducer = (state = initialState, action) => {
@@ -11,22 +11,6 @@ export const filterReducer = (state = initialState, action) => {
         case INIT_PRODUCTS:
         
         return {...state, products: action.payload.products}
-
-        case FILTER_ONE_PRODUCT:
-            
-            let result;
-
-            let productsState = [...state.products];
-            let productSearch = action.payload;
-            if(productSearch !== '') {
-                result = productsState.filter(product => (product.title.toLowerCase().indexOf(productSearch.toLowerCase()) !== -1))
-            } else {
-                result = productsState
-            }
-
-            //console.log('Result: ', {products: result})
-
-        return {...state, products: result};
 
         case FILTER_SEARCH_PRODUCT:
 
@@ -40,8 +24,18 @@ export const filterReducer = (state = initialState, action) => {
             } else {
                 product = ''
             }
+
+            let result;
+
+            let productsState = [...state.products];
+            let productSearch = product;
+            if(productSearch !== '') {
+                result = productsState.filter(product => (product.title.toLowerCase().indexOf(productSearch.toLowerCase()) !== -1))
+            } else {
+                result = productsState
+            }
         
-        return {...state, searchProduct: product }
+        return {...state, filter: result}
     
         default:
             return state
