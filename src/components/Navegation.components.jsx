@@ -4,19 +4,9 @@ import { NavLink } from 'react-router-dom';
 import { FILTER_ONE_PRODUCT, FILTER_SEARCH_PRODUCT } from '../actions/types';
 
 const Navegation = props => {
-
-    const { searchProduct } = props.products;
-
     const onHandleChange = e => {
         props.filterProduct(e.target.value)
     }
-
-    /*const onHandleClick = e => {
-        e.preventDefault();
-        props.oneProduct(searchProduct)
-    }
-
-    console.log('Props: ', props)*/
 
     return (
         <>
@@ -44,9 +34,7 @@ const Navegation = props => {
                         name="search"
                         onChange={onHandleChange}
                     />
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit" 
-                        //onClick={onHandleClick}
-                    >
+                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit" >
                         Search
                     </button>
                 </form>

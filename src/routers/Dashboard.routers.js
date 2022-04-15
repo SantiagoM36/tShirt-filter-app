@@ -8,12 +8,10 @@ import AboutUs from '../pages/AboutUs.pages';
 import Contact from '../pages/Contact.pages';
 import Index from '../pages/Index.pages';
 import NotFound from '../pages/NotFound.pages';
-//import infoProducts from '../data/merchants.json';
 
 import store from '../store';
 import { getProducts } from '../services/api.services';
 import { initProducts } from '../actions/filter.actions';
-import { STORAGE_PRODUCTS } from '../utils/constants';
 import { connect } from 'react-redux';
 
 class Dashboard extends React.Component {
@@ -22,17 +20,12 @@ class Dashboard extends React.Component {
         getProducts().then(products => {
             store.dispatch(initProducts(products))
         })
-    }
-
-    getProductsFromStorage = () => {
-        //const products = localStorage.getItem(STORAGE_PRODUCTS)
+        
     }
 
     render() {
         const { products } = this.props.products;
         if (!products) return [];
-        
-        //console.log('Props: ', this.props)
 
         return (
             <BrowserRouter>

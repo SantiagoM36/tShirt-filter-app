@@ -25,10 +25,10 @@ export const filterReducer = (state = initialState, action) => {
                 product = ''
             }
 
+            const productsState = [...state.products];
+            let productSearch = product;
             let result;
 
-            let productsState = [...state.products];
-            let productSearch = product;
             if(productSearch !== '') {
                 result = productsState.filter(product => (product.title.toLowerCase().indexOf(productSearch.toLowerCase()) !== -1))
             } else {
